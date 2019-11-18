@@ -81,7 +81,7 @@ void setup()
   Particle.variable("state", doorStatePublishedString);
 
   delay(5000);   // Allow board to settle
-  Time.zone(+2);
+  Time.zone(+1);
   Blynk.begin(BLYNK_AUTH_TOKEN);
 
   //Magnetic switch
