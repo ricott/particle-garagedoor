@@ -1,8 +1,11 @@
+//Blynk token kept in file listed in .gitignore
+#include "BLYNK_SETTINGS.h"
+
 #include "Debounce/Debounce.h"
 #include "SparkIntervalTimer.h"
 #include "blynk.h"
-//Blynk token kept in file listed in .gitignore
-#include "AUTH_TOKEN.h"
+
+char authToken[] = BLYNK_AUTH_TOKEN;
 
 const String event_prefix = "garage/door/";
 // door sensor and control
@@ -82,7 +85,7 @@ void setup()
 
   delay(5000);   // Allow board to settle
   Time.zone(+1);
-  Blynk.begin(BLYNK_AUTH_TOKEN);
+  Blynk.begin(authToken);
 
   //Magnetic switch
   pinMode(SENSOR_CLOSED_INPUT_PIN, INPUT_PULLUP);

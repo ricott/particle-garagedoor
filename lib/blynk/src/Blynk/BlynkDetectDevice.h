@@ -82,11 +82,13 @@
 
         #define BLYNK_NO_YIELD
         #define BLYNK_USE_128_VPINS
+        #define BLYNK_USE_INTERNAL_DTOSTRF
 
         #if   defined(ENERGIA_ARCH_MSP430)
             #define BLYNK_INFO_DEVICE  "LaunchPad MSP430"
             #define BLYNK_INFO_CPU     "MSP430"
             #define BLYNK_NO_FLOAT
+            #define BLYNK_NO_LONGLONG
         #elif defined(ENERGIA_ARCH_MSP432)
             #define BLYNK_INFO_DEVICE  "LaunchPad MSP432"
             #define BLYNK_INFO_CPU     "MSP432"
@@ -111,8 +113,6 @@
             #define BLYNK_INFO_CONNECTION  "CC3220"
             #define BLYNK_SEND_CHUNK 64
             #define BLYNK_BUFFERS_SIZE 1024
-
-            #define BLYNK_USE_INTERNAL_DTOSTRF
 
             #define BLYNK_INFO_DEVICE  "CC3220"
             #define BLYNK_INFO_CPU     "CC3220"
@@ -144,6 +144,16 @@
         #define BLYNK_INFO_DEVICE  "Particle Ethernet"
         #elif PLATFORM_ID==10
         #define BLYNK_INFO_DEVICE  "Particle Electron"
+
+        #elif PLATFORM_ID==12
+        #define BLYNK_INFO_DEVICE  "Particle Argon"
+        #elif PLATFORM_ID==13
+        #define BLYNK_INFO_DEVICE  "Particle Boron"
+        #elif PLATFORM_ID==14
+        #define BLYNK_INFO_DEVICE  "Particle Xenon"
+        #elif PLATFORM_ID==26
+        #define BLYNK_INFO_DEVICE  "Particle Tracker"
+
         #elif PLATFORM_ID==31
         #define BLYNK_INFO_DEVICE  "Particle RPi"
         #elif PLATFORM_ID==82
@@ -227,6 +237,14 @@
             #define BLYNK_BUFFERS_SIZE 1024
         #endif
 
+        #if defined(ARDUINO_ARCH_AVR)
+            #define BLYNK_USE_INTERNAL_ATOLL
+        #endif
+
+        #if defined(ARDUINO_ARCH_SAMD)
+            #define BLYNK_USE_INTERNAL_DTOSTRF
+        #endif
+
         /* Arduino AVR */
         #if   defined(ARDUINO_AVR_NANO)
         #define BLYNK_INFO_DEVICE  "Arduino Nano"
@@ -271,6 +289,10 @@
         #elif defined(ARDUINO_AVR_ROBOT_CONTROL)
         #define BLYNK_INFO_DEVICE  "Robot Control"
 
+        /* Arduino megaAVR */
+        #elif defined(ARDUINO_AVR_UNO_WIFI_REV2)
+        #define BLYNK_INFO_DEVICE  "Arduino UNO WiFi Rev2"
+
         /* Arduino SAM */
         #elif defined(ARDUINO_SAM_DUE)
         #define BLYNK_INFO_DEVICE  "Arduino Due"
@@ -284,6 +306,8 @@
         #define BLYNK_INFO_DEVICE  "MKR1000"
         #elif defined(ARDUINO_SAMD_MKRZERO)
         #define BLYNK_INFO_DEVICE  "MKRZERO"
+        #elif defined(ARDUINO_SAMD_MKRNB1500)
+        #define BLYNK_INFO_DEVICE  "MKR NB 1500"
         #elif defined(ARDUINO_SAMD_MKRGSM1400)
         #define BLYNK_INFO_DEVICE  "MKR GSM 1400"
         #elif defined(ARDUINO_SAMD_MKRWAN1300)
@@ -332,30 +356,19 @@
         #define BLYNK_INFO_DEVICE  "BLE Nano"
 
         /* ESP8266 */
-        #elif defined(ARDUINO_ESP8266_ESP01)
-        #define BLYNK_INFO_DEVICE  "ESP8266"
-        #elif defined(ARDUINO_ESP8266_ESP12)
-        #define BLYNK_INFO_DEVICE  "ESP-12"
         #elif defined(ARDUINO_ESP8266_NODEMCU)
         #define BLYNK_INFO_DEVICE  "NodeMCU"
-        #elif defined(ARDUINO_ESP8266_THING)
-        #define BLYNK_INFO_DEVICE  "Esp Thing"
-        #elif defined(ARDUINO_ESP8266_THING_DEV)
-        #define BLYNK_INFO_DEVICE  "Esp Thing Dev"
+        #elif defined(ARDUINO_ARCH_ESP8266)
+        #define BLYNK_INFO_DEVICE  "ESP8266"
 
         /* ESP32 */
-        #elif defined(ARDUINO_ESP32_DEV)
+        #elif defined(ARDUINO_ESP32C3_DEV)
+        #define BLYNK_INFO_DEVICE  "ESP32C3"
+        #define BLYNK_NO_ANALOG_PINS
+        #elif defined(ARDUINO_ESP32S2_DEV)
+        #define BLYNK_INFO_DEVICE  "ESP32S2"
+        #elif defined(ARDUINO_ARCH_ESP32)
         #define BLYNK_INFO_DEVICE  "ESP32"
-        #elif defined(ARDUINO_ESP320)
-        #define BLYNK_INFO_DEVICE  "SweetPeas ESP320"
-        #elif defined(ARDUINO_NANO32)
-        #define BLYNK_INFO_DEVICE  "ESP32 Nano32"
-        #elif defined(ARDUINO_LoLin32)
-        #define BLYNK_INFO_DEVICE  "LoLin32"
-        #elif defined(ARDUINO_ESPea32)
-        #define BLYNK_INFO_DEVICE  "ESPea32"
-        #elif defined(ARDUINO_QUANTUM)
-        #define BLYNK_INFO_DEVICE  "Noduino Quantum"
 
         /* STM32 */
         #elif defined(ARDUINO_ARCH_STM32F1)
@@ -400,6 +413,12 @@
         #define BLYNK_BUFFERS_SIZE 1024
         #elif defined(ARDUINO_WILDFIRE_V4)
         #define BLYNK_INFO_DEVICE  "Wildfire V4"
+        #define BLYNK_USE_128_VPINS
+        #define BLYNK_BUFFERS_SIZE 1024
+
+         /* Seeed studio */
+        #elif defined(SEEED_WIO_TERMINAL)
+        #define BLYNK_INFO_DEVICE "Seeed Wio Terminal"
         #define BLYNK_USE_128_VPINS
         #define BLYNK_BUFFERS_SIZE 1024
 

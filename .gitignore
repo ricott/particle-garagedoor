@@ -11,4 +11,4 @@ target/*
 *.cpp
 
 #Secrets file
-AUTH_TOKEN.h
+BLYNK_SETTINGS.h
